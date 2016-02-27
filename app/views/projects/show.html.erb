@@ -1,6 +1,6 @@
 <% title(@project.name, 'Projects') %>
 <header>
-  <%= content_tag :h1, @project.name %>
+  <h1><%= @project.name %></h1>
 
   <ul class="actions">
     <% if policy(@project).update? %>
@@ -25,12 +25,9 @@
         <%= submit_tag 'Search', class: 'btn btn-default' %>
       <% end %>
     </li>
-  </ul>
-
-  <ul class='actions'>
-  <% if policy(Ticket.new(project: @project)).create? %>
+    <% if policy(Ticket.new(project: @project)).create? %>
       <li><%= link_to 'New Ticket', new_project_ticket_path(@project), class: 'new' %></li>
-  <% end %>
+    <% end %>
   </ul>
 </header>
 
