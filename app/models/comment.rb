@@ -35,8 +35,6 @@ class Comment < ActiveRecord::Base
   end
 
   def author_watches_ticket
-    if author.present? && !ticket.watchers.include?(author)
-      ticket.watchers << author
-    end
+    ticket.watchers << author if(author.present? && !ticket.watchers.include?(author))
   end
 end
