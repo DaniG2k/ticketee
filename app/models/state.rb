@@ -6,7 +6,7 @@ class State < ActiveRecord::Base
   def make_default!
     # Prevent race condition using database-level locks.
     State.transaction do
-      State.update_all(default: false)
+      State.where.not(id: id).lock(true).update_all(default: false)
       State.where(id: id).lock(true).first.update!(default: true)
     end
   end
