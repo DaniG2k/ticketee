@@ -8,14 +8,14 @@ RSpec.describe State, type: :model do
   it '#make_default! sets a default state to true' do
     state1.make_default!
 
-    expect(State.first.default?).to be true
+    expect(state1.reload.default?).to be true
   end
 
   it '#make_default! sets all other states to false' do
     state1.make_default!
 
-    expect(State.first.default?).to be true
-    expect(State.second.default?).to be false
-    expect(State.third.default?).to be false
+    expect(state1.reload.default?).to be true
+    expect(state2.reload.default?).to be false
+    expect(state3.reload.default?).to be false
   end
 end
